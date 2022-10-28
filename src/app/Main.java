@@ -1,11 +1,18 @@
 package app;
 
 import dto.PuestoDTO;
+import exceptions.PuestoYaExistenteException;
 import gestores.GestorPuesto;
 
 public class Main {
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
+		
+		DarDeAlta();
+		
+}
+	
+	public static void DarDeAlta() {
 		
 		PuestoDTO puestoDTO = new PuestoDTO();
 		puestoDTO.setCodigo(null);
@@ -16,8 +23,10 @@ public class Main {
 		puestoDTO.setPonderaciones(null);
 		
 		GestorPuesto gestorPuesto = new GestorPuesto();
-		
-		gestorPuesto.AltaPuesto(puestoDTO);
+		try{
+			gestorPuesto.AltaPuesto(puestoDTO);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
-
-}
+	}

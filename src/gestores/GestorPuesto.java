@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 //import dao.PuestoDao;
 import dao.PuestoDaoImpl;
 import dto.PuestoDTO;
+import exceptions.PuestoYaExistenteException;
 import principal.Puesto;
 
 public class GestorPuesto {
@@ -14,7 +15,7 @@ public class GestorPuesto {
 			PuestoDaoImpl puestoDaoImpl = new PuestoDaoImpl();
 			
 			if(BuscarPuesto(puestoDTO) != null) {
-				throw new Exception("El puesto ya existe");
+				throw new PuestoYaExistenteException("El puesto ya existe");
 			}else {
 				puestoDaoImpl.crearPuesto(puestoDTO);
 				
