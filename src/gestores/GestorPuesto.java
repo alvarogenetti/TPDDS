@@ -3,10 +3,9 @@ package gestores;
 import java.util.stream.Collectors;
 
 //import dao.PuestoDao;
-import dao.PuestoDaoImpl;
+import dao.PuestoMySQLDao;
 import dto.PuestoDTO;
 import exceptions.PuestoYaExistenteException;
-import principal.Competencia;
 import principal.Puesto;
 
 public class GestorPuesto {
@@ -14,12 +13,12 @@ public class GestorPuesto {
 		 private static GestorPuesto gp;
 
 		public void AltaPuesto(PuestoDTO puestoDTO) throws Exception{
-			PuestoDaoImpl puestoDaoImpl = new PuestoDaoImpl();
+			PuestoMySQLDao puestoMySQLDao = new PuestoMySQLDao();
 			
 			if(BuscarPuesto(puestoDTO) != null) {
 				throw new PuestoYaExistenteException("El puesto ya existe");
 			}else {
-				puestoDaoImpl.crearPuesto(puestoDTO);
+				puestoMySQLDao.crearPuesto(puestoDTO);
 				
 				Puesto newPuesto = BuscarPuesto(puestoDTO);
 				Integer ponderacionesSize = puestoDTO.getPonderaciones().size();
@@ -28,13 +27,13 @@ public class GestorPuesto {
 					newPuesto.addPonderacionCompetencia(puestoDTO.getPonderaciones().get(i));
 					puestoDTO.getPonderaciones().get(i).setPuesto(newPuesto);
 				}
-				
+				//PuestoMySQLDao.guardarPuesto(); ??? eso se haria en el metodo de crear puesto del dao?
 			}
 		}
 		public Puesto BuscarPuesto(PuestoDTO puestoDTO) {
-			PuestoDaoImpl puestoDaoImpl = new PuestoDaoImpl();
+			PuestoMySQLDao puestoMySQLDao = new PuestoMySQLDao();
 			
-			Puesto puesto = puestoDaoImpl.getAllPuestos().stream().filter(p -> p.getCodigo() == puestoDTO.getCodigo()).collect(Collectors.toList()).get(0);
+			Puesto puesto = puestoMySQLDao.getAllPuestos().stream().filter(p -> p.getCodigo() == puestoDTO.getCodigo()).collect(Collectors.toList()).get(0);
 			
 			return puesto;
 		}

@@ -19,7 +19,9 @@ public class Main {
 		puestoDTO.setDescripcion(null);
 		puestoDTO.setEmpresa(null);
 		puestoDTO.setNombre(null);
-
+		
+		//se tendrian que crear instancias de PonderacionCompetencia con la competencia
+		// y ponderacion para luego asignarle el Puesto
 		puestoDTO.setPonderaciones(null);
 		
 		GestorPuesto gestorPuesto = new GestorPuesto();

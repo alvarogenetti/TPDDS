@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import dto.PuestoDTO;
 import principal.Puesto;
 
-public class PuestoDaoImpl implements PuestoDao {
+public class PuestoMySQLDao implements PuestoDao {
 
-	public PuestoDaoImpl() {
+	public PuestoMySQLDao() {
 		//TODO Auto-generated constructor stub
 	}
 
