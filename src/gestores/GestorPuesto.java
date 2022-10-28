@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import dao.PuestoDaoImpl;
 import dto.PuestoDTO;
 import exceptions.PuestoYaExistenteException;
+import principal.Competencia;
 import principal.Puesto;
 
 public class GestorPuesto {
@@ -19,6 +20,14 @@ public class GestorPuesto {
 				throw new PuestoYaExistenteException("El puesto ya existe");
 			}else {
 				puestoDaoImpl.crearPuesto(puestoDTO);
+				
+				Puesto newPuesto = BuscarPuesto(puestoDTO);
+				Integer ponderacionesSize = puestoDTO.getPonderaciones().size();
+
+				for(int i = 0;i<ponderacionesSize; i++) {
+					newPuesto.addPonderacionCompetencia(puestoDTO.getPonderaciones().get(i));
+					puestoDTO.getPonderaciones().get(i).setPuesto(newPuesto);
+				}
 				
 			}
 		}
@@ -35,5 +44,6 @@ public class GestorPuesto {
 	
 			return gp;
 		}
+
 
 }

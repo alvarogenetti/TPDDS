@@ -31,6 +31,10 @@ public class Puesto {
 		this.empresa = empresa;
 	}
 	
+	public void addPonderacionCompetencia(PonderacionCompetencia p) {
+		this.ponderaciones.add(p);
+	}
+	
 	public ArrayList<PonderacionCompetencia> getPonderaciones() {
 		return ponderaciones;
 	}
