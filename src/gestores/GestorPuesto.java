@@ -9,6 +9,7 @@ import principal.Puesto;
 
 public class GestorPuesto {
 		 //private PuestoDao puestoDao;
+		 private static GestorPuesto gp;
 
 		public void AltaPuesto(PuestoDTO puestoDTO) throws Exception{
 			PuestoDaoImpl puestoDaoImpl = new PuestoDaoImpl();
@@ -26,6 +27,12 @@ public class GestorPuesto {
 			Puesto puesto = puestoDaoImpl.getAllPuestos().stream().filter(p -> p.getCodigo() == puestoDTO.getCodigo()).collect(Collectors.toList()).get(0);
 			
 			return puesto;
+		}
+
+		public static GestorPuesto getInstance(){
+			if(gp==null) gp = new GestorPuesto();
+	
+			return gp;
 		}
 
 }
