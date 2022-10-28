@@ -1,8 +1,13 @@
 package dao;
 
+import java.util.ArrayList;
+
+import dto.PuestoDTO;
+import principal.Puesto;
+
 public interface PuestoDao {
-	void crearPuesto();
+	void crearPuesto(PuestoDTO puestoDTO);
 	void modificarPuesto();
 	void eliminarPuesto();
-	void buscarOrdenDeMerito();
+	ArrayList<Puesto> getAllPuestos();
 }
